@@ -23,6 +23,15 @@ export default class Slider {
         const slidesDiv = document.createElement('div');
         slidesDiv.classList.add('slides');
 
+        const slideNavigation = document.createElement('div');
+        slideNavigation.classList.add('slide-navigation-container')
+        const nextNavigation = document.createElement('div');
+        nextNavigation.classList.add('slide-navigation', 'slide-navigation-next');
+        const prevNavigation = document.createElement('div');
+        prevNavigation.classList.add('slide-navigation', 'slide-navigation-prev');
+        slideNavigation.append(nextNavigation, prevNavigation);
+        slidesDiv.appendChild(slideNavigation);
+
         this.slideImg = document.createElement('img');
         this.slideImg.src = this.currentImage;
         slidesDiv.appendChild(this.slideImg);
