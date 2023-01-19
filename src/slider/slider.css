@@ -70,3 +70,40 @@
     width: 32px;
     height: 32px;
 }
+
+.slider-dot-navigation-container {
+    align-self: end;
+    width: 60%;
+    justify-self: center;
+    grid-column: 1 / span 2;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.slider-dot-container {
+    height: 14px;
+    width: 14px;
+    border-radius: 100%;
+    border: 2px solid #ddd;
+    background-color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-dot {
+    height: 10px;
+    width: 10px;
+    background-color: #aaa;
+    box-sizing: border-box;
+    border-radius: 100%;
+    border: 2px solid #aaa;
+}
+
+.slider-dot.selected {
+    border: 2px solid #aaa;
+    background-color: #555;
+}
