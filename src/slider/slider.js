@@ -14,7 +14,7 @@ export default class Slider {
         this.currentImage = this.images[this.currentImageIndex];
 
         this.render();
-        setInterval(() => this.nextImage(), 5000);
+        this.nextImageTimeout = setTimeout(() => this.nextImage(), 5000);
 
         return this.sliderContainer;
     }
@@ -77,8 +77,9 @@ export default class Slider {
 
     updateImage() {
         this.currentImage = this.images[this.currentImageIndex];
-        console.log(this.currentImage);
         this.slideImg.src = this.currentImage;
+        clearTimeout(this.nextImageTimeout);
+        this.nextImageTimeout = setTimeout(() => this.nextImage(), 5000);
     }
 
 }
