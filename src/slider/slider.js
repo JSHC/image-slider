@@ -25,10 +25,15 @@ export default class Slider {
 
         const slideNavigation = document.createElement('div');
         slideNavigation.classList.add('slide-navigation-container')
+
         const nextNavigation = document.createElement('div');
         nextNavigation.classList.add('slide-navigation', 'slide-navigation-next');
+        nextNavigation.addEventListener('click', () => this.nextImage());
+
         const prevNavigation = document.createElement('div');
         prevNavigation.classList.add('slide-navigation', 'slide-navigation-prev');
+        prevNavigation.addEventListener('click', () => this.previousImage());
+
         slideNavigation.append(nextNavigation, prevNavigation);
         slidesDiv.appendChild(slideNavigation);
 
@@ -55,11 +60,13 @@ export default class Slider {
     }
 
     previousImage() {
+        console.log('previousImage called');
+        console.log(this.currentImageIndex);
         if (this.images.length === 1) {
             return;
         }
 
-        if (this.currentImageIndex - 1 <= 0) {
+        if (this.currentImageIndex - 1 < 0) {
             this.currentImageIndex = this.images.length - 1;
         } else {
             this.currentImageIndex--;
@@ -70,6 +77,7 @@ export default class Slider {
 
     updateImage() {
         this.currentImage = this.images[this.currentImageIndex];
+        console.log(this.currentImage);
         this.slideImg.src = this.currentImage;
     }
 
