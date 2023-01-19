@@ -1,4 +1,5 @@
 import './slider.css';
+import rightArrow from './assets/arrow-right.svg';
 
 export default class Slider {
     constructor(images) {
@@ -29,10 +30,16 @@ export default class Slider {
         const nextNavigation = document.createElement('div');
         nextNavigation.classList.add('slide-navigation', 'slide-navigation-next');
         nextNavigation.addEventListener('click', () => this.nextImage());
+        const nextArrow = document.createElement('div');
+        nextArrow.classList.add('next-arrow');
+        nextNavigation.appendChild(nextArrow);
 
         const prevNavigation = document.createElement('div');
         prevNavigation.classList.add('slide-navigation', 'slide-navigation-prev');
         prevNavigation.addEventListener('click', () => this.previousImage());
+        const prevArrow = document.createElement('div');
+        prevArrow.classList.add('prev-arrow');
+        prevNavigation.appendChild(prevArrow);
 
         slideNavigation.append(nextNavigation, prevNavigation);
         slidesDiv.appendChild(slideNavigation);
@@ -60,8 +67,6 @@ export default class Slider {
     }
 
     previousImage() {
-        console.log('previousImage called');
-        console.log(this.currentImageIndex);
         if (this.images.length === 1) {
             return;
         }
