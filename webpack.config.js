@@ -2,7 +2,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: {
+        index: './src/index.js',
+        slider: './src/slider/slider.js',
+    },
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Image Slider',
