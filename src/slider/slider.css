@@ -88,22 +88,24 @@
     width: 14px;
     border-radius: 100%;
     border: 2px solid #ddd;
-    background-color: #555;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.slider-dot-container:hover {
+    cursor: pointer;
+    background-color: #aaa;
+}
+
 .slider-dot {
     height: 10px;
     width: 10px;
-    background-color: #aaa;
     box-sizing: border-box;
     border-radius: 100%;
-    border: 2px solid #aaa;
 }
 
 .slider-dot.selected {
-    border: 2px solid #aaa;
+    border: 1px solid #ddd;
     background-color: #555;
 }
