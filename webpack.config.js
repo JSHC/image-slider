@@ -6,6 +6,7 @@ module.exports = {
         index: './example/index.js',
         slider: './src/slider/slider.js',
     },
+    devtool: 'inline-source-map',
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Image Slider',

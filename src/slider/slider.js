@@ -10,17 +10,37 @@ export default class Slider {
         if (!images || !Array.isArray(images) || images.length === 0) {
             return this.sliderContainer;
         }
-        this.images = images;
+
+        this.loadImages(images);
         this.currentImageIndex = 0;
-        this.currentImage = this.images[this.currentImageIndex];
+        this.currentImage = this.images[this.currentImageIndex].src;
+        this.nextImageTimeout = setTimeout(() => this.nextImage(), 5000); 
 
         this.render();
-        this.nextImageTimeout = setTimeout(() => this.nextImage(), 5000);
-
         return this.sliderContainer;
     }
 
+    async loadImages(images) {
+        this.images = [];
+        for (let index in images) {
+            this.loadImage(images, index);
+        }
+        console.log(this.images);
+    }
+
+    loadImage(images, index) {
+        let img = new Image();
+        img.src = images[index];
+        this.images[index] = img;
+    }
+
+
     render() {
+        this.currentImageIndex = 0;
+        this.currentImage = this.images[this.currentImageIndex].src;
+
+        this.nextImageTimeout = setTimeout(() => this.nextImage(), 5000);
+
         const slidesDiv = document.createElement('div');
         slidesDiv.classList.add('slides');
 
@@ -101,7 +121,7 @@ export default class Slider {
 
     updateImage() {
         this.currentImage = this.images[this.currentImageIndex];
-        this.slideImg.src = this.currentImage;
+        this.slideImg.src = this.currentImage.src;
         clearTimeout(this.nextImageTimeout);
         this.nextImageTimeout = setTimeout(() => this.nextImage(), 5000);
         this.updateDotNavigation();
