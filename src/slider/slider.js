@@ -55,6 +55,9 @@ export default class Slider {
             if (Number(imageIndex) === this.currentImageIndex) {
                 dot.classList.add('selected');
             }
+            dotContainer.addEventListener('click', () => {
+                this.setCurrentImageIndex(imageIndex);
+            })
 
             dotContainer.appendChild(dot);
             dotNavigation.appendChild(dotContainer);
@@ -69,7 +72,6 @@ export default class Slider {
     }
 
     nextImage() {
-        console.log('nextImage called');
         if (this.images.length === 1) {
             return;
         }
@@ -107,7 +109,6 @@ export default class Slider {
 
     updateDotNavigation() {
         const dots = Array.from(document.querySelectorAll('.slider-dot'));
-        console.log(dots);
         for (const dotIndex in dots) {
             if (Number(dotIndex) === Number(this.currentImageIndex)) {
                 dots[dotIndex].classList.add('selected');
@@ -115,6 +116,11 @@ export default class Slider {
                 dots[dotIndex].classList.remove('selected');
             }
         }
+    }
+
+    setCurrentImageIndex(index) {
+        this.currentImageIndex = index;
+        this.updateImage();
     }
 
 }
