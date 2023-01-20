@@ -1,3 +1,9 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .slider-container {
     width: 640px;
     height: 360px;
@@ -8,6 +14,7 @@
     width: 100%;
     height: 100%;
     position: relative;
+    overflow: hidden;
 }
 
 .slides .slide-navigation-container {
@@ -51,10 +58,11 @@
     grid-row: 1;
 }
 
-.slides > img {
+.slides img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    transition: transform 400ms linear;
 }
 
 .next-arrow {
@@ -108,4 +116,21 @@
 .slider-dot.selected {
     border: 1px solid #ddd;
     background-color: #555;
+}
+
+.slides-image-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    position: absolute;
+}
+
+.slides-image-wrapper img {
+    flex-shrink: 0;
+    transition: transform 400ms linear;
+}
+
+.selected-image {
+    transform: translateX(0);
 }

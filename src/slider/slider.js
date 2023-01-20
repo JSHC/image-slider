@@ -14,7 +14,7 @@ export default class Slider {
         this.loadImages(images);
         this.currentImageIndex = 0;
         this.currentImage = this.images[this.currentImageIndex].src;
-        this.nextImageTimeout = setTimeout(() => this.nextImage(), 5000); 
+        //this.nextImageTimeout = setTimeout(() => this.nextImage(), 5000); 
 
         this.render();
         return this.sliderContainer;
@@ -36,13 +36,13 @@ export default class Slider {
 
 
     render() {
-        this.currentImageIndex = 0;
-        this.currentImage = this.images[this.currentImageIndex].src;
-
-        this.nextImageTimeout = setTimeout(() => this.nextImage(), 5000);
 
         const slidesDiv = document.createElement('div');
         slidesDiv.classList.add('slides');
+
+        this.imageWrapper = document.createElement('div');
+        this.imageWrapper.classList.add('slides-image-wrapper');
+        slidesDiv.appendChild(this.imageWrapper);
 
         const slideNavigation = document.createElement('div');
         slideNavigation.classList.add('slide-navigation-container')
@@ -84,9 +84,10 @@ export default class Slider {
         }
         slideNavigation.appendChild(dotNavigation);
 
-        this.slideImg = document.createElement('img');
-        this.slideImg.src = this.currentImage;
-        slidesDiv.appendChild(this.slideImg);
+        for (let image of this.images) {
+            this.imageWrapper.appendChild(image);    
+            image.classList.add('selected-image');
+        }
 
         this.sliderContainer.appendChild(slidesDiv);
     }
@@ -120,10 +121,9 @@ export default class Slider {
     }
 
     updateImage() {
-        this.currentImage = this.images[this.currentImageIndex];
-        this.slideImg.src = this.currentImage.src;
-        clearTimeout(this.nextImageTimeout);
-        this.nextImageTimeout = setTimeout(() => this.nextImage(), 5000);
+        for (let image of this.imageWrapper.childNodes) {
+            image.style.transform = `translateX(${-100 * this.currentImageIndex}%)`;
+        }
         this.updateDotNavigation();
     }
 
